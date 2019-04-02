@@ -1,0 +1,9 @@
+https://stackoverflow.com/questions/41748577/saving-a-datepicker-value-to-database-in-laravel
+
+https://laracasts.com/discuss/channels/general-discussion/converting-datetime-picker-data-to-be-inserted-into-mysql
+
+https://laracasts.com/discuss/channels/laravel/save-datepicker-date-field-to-database?page=1
+https://eonasdan.github.io/bootstrap-datetimepicker/
+https://mdbootstrap.com/docs/jquery/forms/date-picker/
+http://foundation-datepicker.peterbeno.com/
+does not work in date picker in my browser
