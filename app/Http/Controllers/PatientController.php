@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\patient;
 use Illuminate\Http\Request;
+use App\Patient;
 
 class PatientController extends Controller
 {
@@ -17,11 +17,11 @@ class PatientController extends Controller
         $this->middleware('auth');
     }
     public function index()
+
     {
-        $patients=patient::paginate(5);
+        $patients=Patient::all();
         return view('patient.index',compact('patients'));
-        
-        echo "Ok from index controller";
+        echo "Index controller is ok!!!";
     }
 
     /**
@@ -31,8 +31,9 @@ class PatientController extends Controller
      */
     public function create()
     {
-        $patients=patient::all();
+        $patients=Patient::all();
         return view('patient.create',compact('patients'));
+        echo "Create Template controller is oK!!";
     }
 
     /**
@@ -43,16 +44,30 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // var_dump($request->all());
+        
+        Patient::create([
+            'patient_name'=>$request->get('patientname'),
+            'patient_email'=>$request->get('email'),
+            'patient_address'=>$request->get('address'),
+            'patient_phNo'=>$request->get('phoneno'),
+            'patient_father_name'=>$request->get('fathername'),
+            'patient_blood_type'=>$request->get('bloodtype'),
+            'patient_user_name'=>$request->get('username'),
+            'patient_password'=>$request->get('password'),
+        ]);
+
+        return redirect()->route('patients.index')->with('success','Successfully');
     }
+
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\patient  $patient
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(patient $patient)
+    public function show($id)
     {
         //
     }
@@ -60,10 +75,10 @@ class PatientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\patient  $patient
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(patient $patient)
+    public function edit($id)
     {
         //
     }
@@ -72,10 +87,10 @@ class PatientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\patient  $patient
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, patient $patient)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -83,11 +98,17 @@ class PatientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\patient  $patient
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(patient $patient)
+    public function destroy($patient_id)
     {
-        //
+        return '
+            <form method="post" action="'. route('patient.destroy', $patient_id) . '">
+                <input type="hidden" name="_method" value="delete" />'. 
+                csrf_field() .
+                '<button type="submit" class="btn btn-danger" onclick="return myFunction();">Delete</button>
+            </form>
+        ';
     }
 }

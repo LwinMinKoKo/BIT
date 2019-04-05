@@ -7,8 +7,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col mt-5">
-@foreach($doctors as $doctor)
-			<form class="form-group col-md-6">
+
+			<form role="formrole" class="form-group col-md-6" method="post" action="{{ruote('patient.store')}}">
+				{!! csrf_field() !!}
+				@csrf
 				
 				<div class="form-group col-md-6">
 					<label for="inputState">State</label>
@@ -46,7 +48,7 @@
 				</div>
 			
 
-			@endforeach
+		
 	
 			</form>
 			

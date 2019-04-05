@@ -1,0 +1,168 @@
+
+
+
+$request->validate(Patient::$rules);
+        // $rdm=uniqid();
+        Patient::create([         
+            // 'patient_id'=>$request->get('');,
+            'patient_name'=>$request->get('patientname'),
+            'patient_e-mail'=>$request->get('email'),
+            'patient_address'=>$request->get('address'),
+            'patient_phNo'=>$request->get('phoneno'),
+            'patient_father_name'=>$request->get('fathername'),
+            'patient_blood_type'=>$request->get('bloodtype'),
+            'patient_user_name'=>$request->get('username'),
+            'patient_password'=>$request->get('password'),
+
+        ]);
+        // return redirect()->route('patients.index')->with('success',"Successfully Save");
+
+
+
+         protected $fillable=['patient_id','patient_name','patient_e-mail','patient_address','patient_phNo','patient_father_name','patient_blood_type','patient_user_name','patient_password'];
+
+	public static $rules=[
+		'patient_id'   => 'required|min:4',
+		'patient_name'   => 'required|min:4',
+		'patient_e-mail'   => 'required|min:4',
+		'patient_address'=>'required|min:4',
+		'patient_phNo'   => 'required|min:4',
+		'patient_father_name'   => 'required|min:4',
+		'patient_blood_type'   => 'required|min:2',
+		'patient_user_name'   => 'required|min:4',
+		'patient_password'   => 'required|min:4',
+		
+	];
+
+
+	@extends('layouts.master')
+
+@section('title','Create')
+
+@section('content')
+
+<div class="container">
+	<div class="row centered-form">
+		<div class="col-md-4 offset-sm-4 bg-info mt-1 p-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="row-md-12">
+						<div class="col-md-6">
+
+							<form role="form" method="post" action="{{route('patients.store')}}" >
+								{!! csrf_field() !!}
+								<div class="form-group">
+									<label for="patientname">Patient Name</label>
+									<input type="text" class="form-control" name="patientname" id="patientname" value="{{old('patientname')}}" />
+									@if($errors->has("name"))
+									<small class="form-text text-danger">
+										{{ $errors->first('patientname') }}
+									</small>
+									@endif
+
+
+								</div>
+
+
+								<div class="form-group ">
+									<label for="quantity">Phone No</label>
+									<input type="text" class="form-control" id="phoneno" name="phoneno"/>
+									@if($errors->has("phoneno"))
+									<small class="form-text text-danger">
+										{{ $errors->first('phoneno') }}
+									</small>
+									@endif
+
+								</div>
+
+								<div class="form-group">
+									<label for="quantity">Address</label>
+									<input type="text" class="form-control" id="address" name="address"/>
+									@if($errors->has("address"))
+									<small class="form-text text-danger">
+										{{ $errors->first('address') }}
+									</small>
+									@endif
+
+
+								</div>
+
+								<div class="form-group">
+									<label for="quantity">User Name</label>
+									<input type="text" class="form-control" id="username" name="username"/>
+									@if($errors->has("username"))
+									<small class="form-text text-danger">
+										{{ $errors->first('username') }}
+									</small>
+									@endif
+
+								</div>
+
+							</div><!---end of col1--->
+
+
+							<div class="col-md-6">
+								<div class="form-group ">
+									<label for="price">Father Name</label>
+									<input type="text" class="form-control" id="fathername" name="fathername"/>
+									@if($errors->has("fathername"))
+									<small class="form-text text-danger">
+										{{ $errors->first('fathername') }}
+									</small>
+									@endif
+
+								</div>
+
+								<div class="form-group">
+									<label for="quantity">E-mail</label>
+									<input type="email" class="form-control" name="email" id="email" placeholder="Example@mail.com" />
+									@if($errors->has("email"))
+									<small class="form-text text-danger">
+										{{ $errors->first('email') }}
+									</small>
+									@endif
+
+
+								</div>
+
+								<div class="form-group">
+									<label for="inputState">Blood Type</label>
+									<select id="inputState" class="form-control" name="bloodtype">
+										<option selected>Choose...</option>
+										<option>A+</option>
+										<option>B+</option>
+										<option>AB+</option>
+										<option>O+</option>
+										<option>A</option>
+										<option>B</option>
+										<option>O</option>
+									</select>
+
+
+
+								</div>
+
+								<div class="form-group">
+									<label for="quantity">Password</label>
+									<input type="password" class="form-control" id="password" name="password"/>
+									@if($errors->has("password"))
+									<small class="form-text text-danger">
+										{{ $errors->first('password') }}
+									</small>
+									@endif
+
+
+								</div>
+
+								<div class="col-md-12" align="right">
+									<button type="submit" class="btn btn-primary">Register</button>
+									<button type="reset" class="btn btn-danger">Cancel</button>
+								</div>	
+
+							</form>
+
+						</div><!------end of col2----->	
+					</div><!---end of row---->
+				</div><!---end of container-->
+
+				@endsection

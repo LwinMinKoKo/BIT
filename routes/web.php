@@ -22,3 +22,4 @@ Route::resource('schedules','ScheduleController');
 
 Route::resource('patients',"PatientController");
 
+

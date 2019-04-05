@@ -13,12 +13,14 @@
 
 	<div class="row-md-12">
 		<div class="col-md-6">
-			<form role="form" method="post" action="{{route('patients.store')}}">
-				<div class="form-group">
-					<label for="did">Doctor ID</label>
-					<input type="text" class="form-control" name="did" readonly />
 
-				
+			<form role="form" method="post" action="{{route('patients.store')}}" >
+				{!! csrf_field() !!}
+				<div class="form-group">
+					<label for="patientname">Patient Name</label>
+					<input type="text" class="form-control" name="patientname"  />
+
+
 				</div>
 
 
@@ -46,8 +48,8 @@
 
 			<div class="col-md-6">
 				<div class="form-group ">
-					<label for="price">Patient Name</label>
-					<input type="text" class="form-control" name="patientname"/>
+					<label for="price">Father Name</label>
+					<input type="text" class="form-control" name="fathername"/>
 					
 				</div>
 
@@ -55,7 +57,7 @@
 					<label for="quantity">E-mail</label>
 					<input type="email" class="form-control" name="email" placeholder="Example@mail.com" />
 
-				
+
 				</div>
 
 				<div class="form-group">
@@ -68,7 +70,7 @@
 						<option>O+</option>
 						<option>A</option>
 						<option>B</option>
-						<option>o</option>
+						<option>O</option>
 					</select>
 
 
