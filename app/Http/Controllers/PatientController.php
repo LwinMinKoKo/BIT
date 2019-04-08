@@ -45,7 +45,7 @@ class PatientController extends Controller
     public function store(Request $request)
     {
         // var_dump($request->all());
-        
+
         Patient::create([
             'patient_name'=>$request->get('patientname'),
             'patient_email'=>$request->get('email'),
@@ -78,9 +78,12 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Patient $patient)
     {
-        //
+        // var_dump($patient);
+        // $patients=Patient::find('$patient');
+        $patients = Patient::find($patient->id);     
+        return view ('patient.edit',compact('patients'));
     }
 
     /**
@@ -90,25 +93,33 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Patient  $patient)
     {
-        //
-    }
 
-    /**
+
+       $patients = Patient::find($patient->id);     
+       $patients->patient_name=$request->get('patientname');
+       $patients->patient_email=$request->get('email');
+       $patients->patient_address=$request->get('address');
+       $patients->patient_phNo=$request->get('phoneno');
+       $patients->patient_father_name=$request->get('fathername');
+       $patients->patient_blood_type=$request->get('bloodtype');
+       $patients->patient_user_name=$request->get('username');
+       $patients->patient_password=$request->get('password');
+       $patients->save();
+
+
+       return redirect()->route('patients.index')->with('success','Successfully');
+   }
+
+ /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($patient_id)
-    {
-        return '
-            <form method="post" action="'. route('patient.destroy', $patient_id) . '">
-                <input type="hidden" name="_method" value="delete" />'. 
-                csrf_field() .
-                '<button type="submit" class="btn btn-danger" onclick="return myFunction();">Delete</button>
-            </form>
-        ';
-    }
+ public function destroy($patient_id)
+ {
+
+ }
 }

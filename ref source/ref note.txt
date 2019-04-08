@@ -7,3 +7,17 @@ https://eonasdan.github.io/bootstrap-datetimepicker/
 https://mdbootstrap.com/docs/jquery/forms/date-picker/
 http://foundation-datepicker.peterbeno.com/
 does not work in date picker in my browser
+
+    $patients = Patient::find('$patient','$id');
+       $patient->patient_name=$request->get('patientname');
+       $patient->patient_email=$request->get('email');
+       $patient->patient_address=$request->get('address');
+       $patient->patient_phNo=$request->get('phoneno');
+       $patient->patient_father_name=$request->get('fathername');
+       $patient->patient_blood_type=$request->get('bloodtype');
+       $patient->patient_user_name=$request->get('username');
+       $patient->patient_password=$request->get('password');
+       $patient->save();
+
+
+       return redirect()->route('patients.index')->with('success','Successfully');

@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                   Welcom to the Hospital Outpatient Management System
                 </div>
 
                 <div class="links">

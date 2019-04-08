@@ -36,7 +36,7 @@
 					<tbody>
 						@foreach($patients as $patient)
 						<tr class="">
-							<td>{{$patient-> patient_id}}</td>
+							<td>{{$patient-> id}}</td>
 							<td>{{$patient-> patient_name}}</td>
 							<td>{{$patient-> patient_email}}</td>
 							<td>{{$patient-> patient_address}}</td>
@@ -45,7 +45,11 @@
 							<td>{{$patient-> patient_blood_type}}</td>
 							<td>{{$patient-> patient_user_name}}</td>
 							<td>{{$patient-> patient_password}}</td>
-							<td><button href="" class="btn btn-success btn-sm ">Update</button></td>
+							<td>
+								<a href="{{route('patients.edit',$patient->id)}}">
+								<button class="btn btn-success btn-sm ">Update</button>
+								</a>
+							</td>
 							<td>
 								<form action="{{route('patients.destroy','id')}}">
 									
