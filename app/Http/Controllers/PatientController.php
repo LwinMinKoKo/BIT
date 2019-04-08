@@ -118,8 +118,12 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
- public function destroy($patient_id)
+ public function destroy($patient)
  {
 
+      $patients = Patient::find($patient);
+     $patients->delete();
+
+      return redirect()->route('patients.index')->with('success','Successfully');
  }
 }

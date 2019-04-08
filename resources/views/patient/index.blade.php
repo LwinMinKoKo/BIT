@@ -51,13 +51,16 @@
 								</a>
 							</td>
 							<td>
-								<form action="{{route('patients.destroy','id')}}">
-									
-									<button class="btn btn-danger btn-sm" onclick="return myfunction();">Delete</button></td>							
+								<form method="post" action="{{route('patients.destroy',$patient->id)}}">
+									{!! method_field('DELETE') !!}
+									{!! csrf_field()!!}
+
+									<button class="btn btn-danger btn-sm">Delete</button>
+							</td>							
 								</form>
 							</tr>
 							@endforeach
-						</tbody>...
+						</tbody>
 					</table>
 				</div>
 
